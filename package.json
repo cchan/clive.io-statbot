@@ -6,7 +6,7 @@
   "dependencies": {
     "dotenv-safe": "^3.0.0",
     "os-toolbox": "^0.1.4",
-    "statbot": "^0.1.0"
+    "server-statbot": "^0.1.0"
   },
   "devDependencies": {},
   "scripts": {

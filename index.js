@@ -1,7 +1,7 @@
 require('dotenv-safe').load();
 let ostb = require('os-toolbox');
 
-let statbot = require('statbot')({
+let statbot = require('server-statbot')({
   verify_token: process.env.FB_VERIFY_TOKEN,
   page_token: process.env.FB_PAGE_TOKEN,
   app_secret: process.env.FB_APP_SECRET,
