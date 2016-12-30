@@ -1,0 +1,25 @@
+{
+  "name": "clive.io-statbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "dotenv-safe": "^3.0.0",
+    "os-toolbox": "^0.1.4",
+    "statbot": "^0.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/clive-io/clive.io-statbot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/clive-io/clive.io-statbot/issues"
+  },
+  "homepage": "https://github.com/clive-io/clive.io-statbot#readme"
+}
