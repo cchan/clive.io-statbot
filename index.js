@@ -9,9 +9,10 @@ let statbot = require('server-statbot')({
   page_scoped_user_id: process.env.FB_USER_ID
 });
 
+// On every log output from pm2, message me
 pm2.connect(() => {
   pm2.launchBus((err, bus) => {
-    bus.on('log:out', packet => {
+    bus.on('log:out', packet => { // apparently '\u000A' works
       statbot.say('[' + packet.process.name + '] ' + packet.data.replace('\\n', '\n'));
     });
     bus.on('log:err', packet => {
@@ -20,13 +21,20 @@ pm2.connect(() => {
   });
 });
 
+// Requesting general status of the server
 statbot.hears(["status"], (text, reply) => {
   reply("Uptime: " + ostb.uptime() + "s");
-  ostb.cpuLoad().then(function(cpuusage){
+  
+  ostb.cpuLoad().then(cpuusage => {
     reply("CPU: " + cpuusage + "%");
+  }).catch(err => {
+    reply("Unable to get CPU usage: " + err);
   });
-  ostb.memoryUsage().then(function(memusage){
+  
+  ostb.memoryUsage().then(memusage => { //Doesn't work??
     reply("Memory: " + cpuusage + "%");
+  }).catch(err => {
+    reply("Unable to get memory usage: " + err);
   });
 });
 
