@@ -12,10 +12,10 @@ let statbot = require('server-statbot')({
 pm2.connect(() => {
   pm2.launchBus((err, bus) => {
     bus.on('log:out', packet => {
-      statbot.say('[' + packet.process.name + '] ' + packet.data);
+      statbot.say('[' + packet.process.name + '] ' + packet.data.replace('\\n', '\n'));
     });
     bus.on('log:err', packet => {
-      statbot.say('[' + packet.process.name + '][err] ' + packet.data);
+      statbot.say('[' + packet.process.name + '][err] ' + packet.data.replace('\\n', '\n'));
     });
   });
 });
