@@ -6,8 +6,7 @@ let statbot = require('server-statbot')({
   verify_token: process.env.FB_VERIFY_TOKEN,
   page_token: process.env.FB_PAGE_TOKEN,
   app_secret: process.env.FB_APP_SECRET,
-  page_scoped_user_id: process.env.FB_USER_ID,
-  port: process.env.PORT
+  page_scoped_user_id: process.env.FB_USER_ID
 });
 
 pm2.connect(() => {
@@ -30,3 +29,5 @@ statbot.hears(["status"], (text, reply) => {
     reply("Memory: " + cpuusage + "%");
   });
 });
+
+statbot.listen(process.env.PORT);
