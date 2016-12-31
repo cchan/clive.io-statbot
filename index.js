@@ -31,8 +31,8 @@ statbot.hears(["status"], (text, reply) => {
     reply("Unable to get CPU usage: " + err);
   });
   
-  ostb.memoryUsage().then(memusage => { //Doesn't work??
-    reply("Memory: " + cpuusage + "%");
+  ostb.memoryUsage().then(memusage => {
+    reply("Memory: " + memusage + "%");
   }).catch(err => {
     reply("Unable to get memory usage: " + err);
   });
