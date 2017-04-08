@@ -27,7 +27,7 @@ pm2.connect(() => {
 });
 
 // Requesting general status of the server
-statbot.hears(["status"], (text, reply) => {
+statbot.hears("status", ["status"], (text, reply) => {
   reply("Uptime: " + ostb.uptime() + "s");
   
   ostb.cpuLoad().then(cpuusage => {
