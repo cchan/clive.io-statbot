@@ -3,7 +3,8 @@ let ostb = require('os-toolbox');
 let pm2 = require('pm2');
 let Tail = require('tail').Tail;
 
-let statbot = require('server-statbot')({
+let Statbot = require('server-statbot');
+let statbot = Statbot({
   verify_token: process.env.FB_VERIFY_TOKEN,
   page_token: process.env.FB_PAGE_TOKEN,
   app_secret: process.env.FB_APP_SECRET,
@@ -11,18 +12,16 @@ let statbot = require('server-statbot')({
 });
 
 // On every sshd log, message me
-let ssh = new Tail('/var/log/secure');
-ssh.on('line', data => console.log('sshd:', data));
-ssh.on('error', err => console.error('sshd tail error:', err));
+statbot.use(Statbot.logtail('/var/log/secure'));
 
 // On every log output from pm2, message me
 pm2.connect(() => {
   pm2.launchBus((err, bus) => {
-    bus.on('log:out', packet => { // apparently '\u000A' works instead of '\n'
-      statbot.say('[' + packet.process.name + '] ' + packet.data.replace('\n', '\u000A'));
+    bus.on('log:out', packet => {
+      statbot.say(packet.process.name, packet.data);
     });
     bus.on('log:err', packet => {
-      statbot.say('[' + packet.process.name + '][err] ' + packet.data.replace('\n', '\u000A'));
+      statbot.say(packet.process.name + ' err', packet.data);
     });
   });
 });
