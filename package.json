@@ -7,7 +7,7 @@
     "dotenv-safe": "^3.0.0",
     "os-toolbox": "^0.1.4",
     "pm2": "^2.2.3",
-    "server-statbot": "^0.4.0",
+    "server-statbot": "^0.4.2",
     "tail": "^1.2.1"
   },
   "devDependencies": {},
