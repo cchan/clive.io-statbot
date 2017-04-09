@@ -14,17 +14,17 @@ let statbot = Statbot({
 // On every sshd log, message me
 statbot.use(Statbot.logtail('/var/log/secure'));
 
+if(process.setuid)
+  process.setuid(500);
+
 // On every log output from pm2, message me
 pm2.connect(() => {
   pm2.launchBus((err, bus) => {
-    bus.on('log:out', packet => {
-      statbot.say(packet.process.name, packet.data);
-    });
-    bus.on('log:err', packet => {
-      statbot.say(packet.process.name + ' err', packet.data);
-    });
+    bus.on('log:out', packet => { statbot.say(packet.process.name, packet.data); });
+    bus.on('log:err', packet => { statbot.say(packet.process.name + ' err', packet.data); });
   });
 });
+
 
 // Requesting general status of the server
 statbot.hears("status", ["status"], (text, reply) => {
