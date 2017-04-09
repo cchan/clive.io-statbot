@@ -4,10 +4,10 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "dotenv-safe": "^3.0.0",
-    "os-toolbox": "^0.1.4",
+    "dotenv-safe": "^4.0.3",
+    "os-toolbox": "^0.2.5",
     "pm2": "^2.2.3",
-    "server-statbot": "^0.4.3",
+    "server-statbot": "^0.4.5",
     "tail": "^1.2.1"
   },
   "devDependencies": {},
