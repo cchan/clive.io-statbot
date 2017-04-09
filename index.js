@@ -14,8 +14,7 @@ let statbot = Statbot({
 // On every sshd log, message me
 statbot.use(Statbot.logtail('/var/log/secure'));
 
-if(process.setuid)
-  process.setuid(500);
+process.env.PM2_HOME = '/home/ec2-user/.pm2';
 
 // On every log output from pm2, message me
 pm2.connect(() => {
