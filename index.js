@@ -14,7 +14,7 @@ let statbot = Statbot({
 // On every sshd log, message me
 statbot.use(Statbot.logtail('/var/log/secure', {
   transform: function(line){
-    const matcher = /(Received disconnect from [0-9\-\_\.]+|Connection closed by [0-9\-\_\.]+ \[preauth\]|Did not receive identification string from [0-9\-\_\.]+|Disconnecting: Too many authentication failures for [a-zA-Z0-9\-\_]+ \[preauth\]|input_userauth_request: invalid user [a-zA-Z0-9\-\_]+ \[preauth\]|Invalid user [a-zA-Z0-9\-\_]+ from [0-9\-\_\.]+|POSSIBLE BREAK-IN ATTEMPT\!|fatal: Read from socket failed: Connection reset by peer \[preauth\])/;
+    const matcher = /(Received disconnect from [0-9\.]+|Connection closed by [0-9\.]+ \[preauth\]|Did not receive identification string from [0-9\.]+|Disconnecting: Too many authentication failures for [a-zA-Z0-9\-\_]+ \[preauth\]|input_userauth_request: invalid user [0-9\.]+ \[preauth\]|Invalid user [0-9\.]+ from [0-9\.]+|POSSIBLE BREAK-IN ATTEMPT\!|fatal: Read from socket failed: Connection reset by peer \[preauth\])/;
     if(matcher.test(line)) return null;
     else return line;
   }
