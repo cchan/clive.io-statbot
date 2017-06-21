@@ -11,6 +11,15 @@ let statbot = Statbot({
   page_scoped_user_id: process.env.FB_USER_ID
 });
 
+statbot.controller.api.messenger_profile.menu([{
+  locale: "default",
+  call_to_actions: [{
+    type: "postback",
+    title: "Status",
+    payload: "status"
+  }]
+}]);
+
 // On every sshd log, message me
 statbot.use(Statbot.logtail('/var/log/secure', {
   transform: function(line){
@@ -29,7 +38,6 @@ pm2.connect(() => {
     bus.on('log:err', packet => { statbot.say(packet.process.name + ' err', packet.data); });
   });
 });
-
 
 // Requesting general status of the server
 statbot.hears("status", ["status"], (text, reply) => {
