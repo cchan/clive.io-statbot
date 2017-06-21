@@ -56,4 +56,9 @@ statbot.hears("status", ["status"], (text, reply) => {
   });
 });
 
-statbot.listen(process.env.PORT);
+statbot.listen(process.env.PORT, function(err){
+  if(err)
+    console.log('error starting statbot');
+  else
+    console.log('running on port ' + process.env.PORT);
+});
