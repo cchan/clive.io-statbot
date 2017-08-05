@@ -54,12 +54,12 @@ statbot.hears("status", ["status"], (text, reply) => {
   }).catch(err => {
     reply("Unable to get memory usage: " + err);
   });
-
+  
   pm2.list((err, procs) => {
     if(err)
       console.error("Could not fetch PM2 process list:", err);
     else
-      console.log(procs.map(proc => proc.name + " up " + proc.pm2_env.pm_uptime).join('\n'));
+      reply(procs.map(proc => proc.name + ' up ' + (new Date().getTime() - proc.pm2_env.pm_uptime)/1000 + 's').join('\n'));
   });
 });
 
