@@ -35,7 +35,7 @@ statbot.use(Statbot.logtail('/var/log/secure', {
       /Invalid user [a-zA-Z0-9\-\_\.]* from [0-9\.]+/,
       /fatal: Read from socket failed: Connection reset by peer \[preauth\]/,
       /fatal: Write failed: Connection reset by peer \[preauth\]/,
-      /error: maximum authentication attempts exceeded for [a-zA-Z0-9\-\_\.]* from [0-9\.]+ port [0-9]+/,
+      /error: maximum authentication attempts exceeded for (invalid user )?[a-zA-Z0-9\-\_\.]* from [0-9\.]+ port [0-9]+/,
       /POSSIBLE BREAK-IN ATTEMPT\!/,
     ];
     
