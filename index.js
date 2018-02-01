@@ -81,6 +81,16 @@ pm2.connect(() => {
   });
 });
 
+statbot.hears("statbot", ["proc restart"], (text, reply) => {
+  if(text.slice(0, 13).toLowerCase() == 'proc restart '){
+    let proc = text.slice(13);
+    pm2.restart(proc, (err) => {
+      if(err) reply("Failed to restart " + proc);
+      else reply("Successfully restarted " + proc);
+    });
+  }
+});
+
 // Requesting general status of the server
 statbot.hears("statbot", ["status"], (text, reply) => {
   reply("Uptime: " + ostb.uptime() + "s");
