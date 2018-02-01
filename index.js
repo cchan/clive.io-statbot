@@ -47,28 +47,33 @@ statbot.use(Statbot.logtail('/var/log/secure', {
   }
 }));
 
-process.env.PM2_HOME = '/home/ec2-user/.pm2';
+
+statbot.hears("statbot", ["mutelist"], (text, reply) => {
+  reply(Array(statbot.mutelist).join(' '));
+});
 
 statbot.hears("statbot", ["unmute"], (text, reply) => {
-  if(text.slice(0, 7) == 'unmute '){
+  if(text.slice(0, 7).toLowerCase() == 'unmute '){
     let exclusion = text.slice(7).trim();
     let wasMuted = statbot.unmute(exclusion);
     if(wasMuted)
-      reply("Removed '" + exclusion + "' from process mute list");
+      reply("Removed '" + exclusion + "' from channel mute list");
     else
-      reply("'" + exclusion + "' was not on the process mute list anyway");
+      reply("'" + exclusion + "' was not on the channel mute list anyway");
   }
 });
 
 statbot.hears("statbot", ["mute"], (text, reply) => {
-  if(text.slice(0, 5) == 'mute '){
+  if(text.slice(0, 5).toLowerCase() == 'mute '){
     let exclusion = text.slice(5).trim();
     statbot.mute(exclusion);
-    reply("Added '" + exclusion + "' to process mute list");
+    reply("Added '" + exclusion + "' to channel mute list");
   }
 });
 
+
 // On every log output from pm2, message me
+process.env.PM2_HOME = '/home/ec2-user/.pm2';
 pm2.connect(() => {
   pm2.launchBus((err, bus) => {
     bus.on('log:out', packet => { statbot.say(packet.process.name, packet.data); });
