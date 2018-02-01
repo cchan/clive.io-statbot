@@ -49,7 +49,7 @@ statbot.use(Statbot.logtail('/var/log/secure', {
 
 
 statbot.hears("statbot", ["mutelist"], (text, reply) => {
-  reply(Array(statbot.mutelist).join(' '));
+  reply(Array.from(statbot.mutelist).join(' '));
 });
 
 statbot.hears("statbot", ["unmute"], (text, reply) => {
