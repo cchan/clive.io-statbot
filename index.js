@@ -49,6 +49,25 @@ statbot.use(Statbot.logtail('/var/log/secure', {
 
 process.env.PM2_HOME = '/home/ec2-user/.pm2';
 
+statbot.hears("statbot", ["unmute"], (text, reply) => {
+  if(text.slice(0, 7) == 'unmute '){
+    let exclusion = text.slice(7).trim();
+    let wasMuted = statbot.unmute(exclusion);
+    if(wasMuted)
+      reply("Removed '" + exclusion + "' from process mute list");
+    else
+      reply("'" + exclusion + "' was not on the process mute list anyway");
+  }
+});
+
+statbot.hears("statbot", ["mute"], (text, reply) => {
+  if(text.slice(0, 5) == 'mute '){
+    let exclusion = text.slice(5).trim();
+    statbot.mute(exclusion);
+    reply("Added '" + exclusion + "' to process mute list");
+  }
+});
+
 // On every log output from pm2, message me
 pm2.connect(() => {
   pm2.launchBus((err, bus) => {
@@ -58,7 +77,7 @@ pm2.connect(() => {
 });
 
 // Requesting general status of the server
-statbot.hears("status", ["status"], (text, reply) => {
+statbot.hears("statbot", ["status"], (text, reply) => {
   reply("Uptime: " + ostb.uptime() + "s");
   
   ostb.cpuLoad().then(cpuusage => {
