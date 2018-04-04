@@ -2740,8 +2740,8 @@ serve-static@1.13.2:
     send "0.16.2"
 
 server-statbot@^0.6.1:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/server-statbot/-/server-statbot-0.6.1.tgz#93034552fbc530b0ea3e7ad4f0a15c9c290bfa63"
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/server-statbot/-/server-statbot-0.6.2.tgz#da55f231a2e6546a195e15397d5ca3c7451682a0"
   dependencies:
     botkit "^0.5.2"
     tail "^1.2.1"
