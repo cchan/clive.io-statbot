@@ -1,7 +1,6 @@
 require('dotenv-safe').load();
 let ostb = require('os-toolbox');
 let pm2 = require('pm2');
-let Tail = require('tail').Tail;
 
 let Statbot = require('server-statbot');
 let statbot = Statbot({
