@@ -30,13 +30,14 @@ statbot.use(Statbot.logtail('/var/log/secure', {
       /Connection closed by [0-9\.]+ (port [0-9]+ )?\[preauth\]/,
       /Disconnecting: Too many authentication failures (for [a-zA-Z0-9\-\_\.]* )?\[preauth\]/,
       /Disconnecting: Change of username or service not allowed: \([a-zA-Z0-9\-\_\.]*,ssh\-connection\) \-\> \([a-zA-Z0-9\-\_\.]*,ssh\-connection\) \[preauth\]/,
-      /input_userauth_request: invalid user [a-zA-Z0-9\-\_\. ]* \[preauth\]/,
+      /input_userauth_request: invalid user [a-zA-Z0-9\-\_\.\* ]* \[preauth\]/,
       /Invalid user +[^ ]* +from [0-9\.]+/,
       /fatal: Read from socket failed: Connection reset by peer \[preauth\]/,
       /fatal: Write failed: Connection reset by peer \[preauth\]/,
       /error: maximum authentication attempts exceeded for (invalid user )?[a-zA-Z0-9\-\_\.]* from [0-9\.]+ port [0-9]+/,
       /Connection reset by [0-9\.]+ port [0-9]+ \[preauth\]/,
       /POSSIBLE BREAK-IN ATTEMPT\!/,
+      /Unable to negotiate with [0-9\.]+ port [0-9]+: no matching host key type found. Their offer: (ssh-dss|ecdsa-sha2-nistp521|ecdsa-sha2-nistp384) \[preauth\]/,
     ];
     
     for(var i = 0; i < matchers.length; i++){
