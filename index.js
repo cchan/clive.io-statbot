@@ -30,7 +30,7 @@ statbot.use(Statbot.logtail('/var/log/secure', {
       /Connection closed by [0-9\.]+ (port [0-9]+ )?\[preauth\]/,
       /Disconnecting: Too many authentication failures (for [a-zA-Z0-9\-\_\.]* )?\[preauth\]/,
       /Disconnecting: Change of username or service not allowed: \([a-zA-Z0-9\-\_\.]*,ssh\-connection\) \-\> \([a-zA-Z0-9\-\_\.]*,ssh\-connection\) \[preauth\]/,
-      /input_userauth_request: invalid user [a-zA-Z0-9\-\_\.\* ]* \[preauth\]/,
+      /input_userauth_request: invalid user [a-zA-Z0-9\-\_\.\*\+\\ ]* \[preauth\]/,
       /Invalid user +[^ ]* +from [0-9\.]+/,
       /fatal: Read from socket failed: Connection reset by peer \[preauth\]/,
       /fatal: Write failed: Connection reset by peer \[preauth\]/,
