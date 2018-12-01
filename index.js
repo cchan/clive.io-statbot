@@ -17,7 +17,7 @@ statbot.controller.api.messenger_profile.menu([{
     title: "Status",
     payload: "status"
   }]
-}]);
+}]).catch(up => { throw up; });
 
 // On every sshd log, message me
 statbot.use(Statbot.logtail('/var/log/secure', {
