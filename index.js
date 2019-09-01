@@ -1,4 +1,4 @@
-require('dotenv-safe').load();
+require('dotenv-safe').config();
 let ostb = require('os-toolbox');
 let pm2 = require('pm2');
 
